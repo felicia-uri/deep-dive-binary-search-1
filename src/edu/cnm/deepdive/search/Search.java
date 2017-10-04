@@ -57,19 +57,19 @@ public class Search {
 
   private static Integer[] readValues(ResourceBundle resources) 
       throws NumberFormatException, IOException {      
-    List<Integer> data = new LinkedList<>();
     try (
         InputStreamReader reader = new InputStreamReader(System.in);
         BufferedReader buffer = new BufferedReader(reader);
     ) {
+      List<Integer> data = new LinkedList<>();
       for (String line = buffer.readLine(); line != null; line = buffer.readLine()) {
         data.add(Integer.valueOf(line));
       }
+      return data.toArray(new Integer[data.size()]);
     } catch (NumberFormatException | IOException ex) {
       System.out.printf(resources.getString(READ_ERROR_MESSAGE_KEY));
       throw ex;
     }
-    return data.toArray(new Integer[0]);
   }
   
   private static int findValue(int needle, Integer[] haystack) {
